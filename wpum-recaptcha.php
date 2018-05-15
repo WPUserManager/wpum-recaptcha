@@ -101,6 +101,7 @@ if ( ! class_exists( 'WPUM_Recaptcha' ) ) :
 		 * @return void
 		 */
 		public function includes() {
+			require_once WPUMR_PLUGIN_DIR . 'includes/settings.php';
 		}
 
 		/**
