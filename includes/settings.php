@@ -44,10 +44,6 @@ function wpumur_register_settings( $settings ) {
 				'label' => esc_html__( 'Registration form' ),
 			],
 			[
-				'value' => 'password_recovery',
-				'label' => esc_html__( 'Password recovery form' ),
-			],
-			[
 				'value' => 'login',
 				'label' => esc_html__( 'Login form' ),
 			],
