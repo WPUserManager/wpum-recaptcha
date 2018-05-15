@@ -1,4 +1,4 @@
-## WP User Manager Google reCAPTCHA addon
+# WP User Manager Google reCAPTCHA addon
 
 Add Google's reCAPTCHA noCAPTCHA to front-end forms powered by the WP User Manager plugin. This is an addon for WP User Manager.
 
