@@ -2,7 +2,7 @@
 /*
 Plugin Name: WPUM Recaptcha
 Plugin URI:  https://wpusermanager.com
-Description: Addon for WP User Manager, Set a minimum and maximum length for usernames upon registration.
+Description: Addon for WP User Manager, stop spam registrations on your website for free.
 Version:     2.0.0
 Author:      Alessandro Tesoro
 Author URI:  https://wpusermanager.com/
