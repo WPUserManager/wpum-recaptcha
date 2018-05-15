@@ -63,7 +63,7 @@ function wpum_recaptcha_validate( $pass, $fields, $values, $form ) {
 			$recaptcha_response_key = esc_html( $_POST['g-recaptcha-response'] );
 			$resp = $recaptcha->verify( $recaptcha_response_key, $_SERVER['REMOTE_ADDR'] );
 			if ( ! $resp->isSuccess() ) {
-				return new WP_Error( 'recaptcha-error', esc_html__( 'Recaptcha validation failed.' ) );
+				return new WP_Error( 'recaptcha-error', esc_html__( 'Recaptcha validation failed.', 'wpum-recaptcha' ) );
 			}
 		}
 	}
