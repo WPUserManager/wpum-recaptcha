@@ -1,8 +1,8 @@
-=== WPUM reCAPTCHA ===
+=== WP User Manager reCAPTCHA ===
 Author URI: https://wpusermanager.com
 Plugin URI: https://wpusermanager.com
 Contributors: alessandro.tesoro, wpusermanager
-Tags: front-end login, front-end registration, login, login page, registration, registration page, login captcha, registration capthca, google captcha, recaptcha, nocaptcha, wpum, wp user manager, front-end login captcha, front-end registration captcha
+Tags: recaptcha, nocaptcha, login recaptcha, registration recaptcha
 Requires at least: 4.7
 Tested up to: 4.9
 License: GPLv2 or later
