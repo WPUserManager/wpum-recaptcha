@@ -107,7 +107,7 @@ if ( ! class_exists( 'WPUM_Recaptcha' ) ) :
 				return false;
 			}
 
-			require __DIR__ . '/vendor/autoload.php';
+			return require __DIR__ . '/vendor/autoload.php';
 		}
 
 		/**
