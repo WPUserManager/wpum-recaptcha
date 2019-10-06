@@ -80,6 +80,9 @@ if ( ! class_exists( 'WPUM_Recaptcha' ) ) :
 		 * Get things up and running.
 		 */
 		public function init() {
+			if ( ! $this->autoload() ) {
+				return;
+			}
 			// Verify the plugin meets WP and PHP requirements.
 			$this->plugin_can_run();
 
@@ -88,18 +91,22 @@ if ( ! class_exists( 'WPUM_Recaptcha' ) ) :
 
 			// Plugin is activated now proceed.
 			$this->setup_constants();
-			$this->autoload();
 			$this->includes();
 			$this->init_hooks();
-
 		}
 
 		/**
 		 * Autoload composer and other required classes.
 		 *
-		 * @return void
+		 * @return bool
 		 */
-		private function autoload() {
+		protected function autoload() {
+			if ( ! file_exists( __DIR__ . '/vendor' ) || ! file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+				add_action( 'admin_notices', array( $this, 'vendor_failed_notice' ) );
+
+				return false;
+			}
+
 			require __DIR__ . '/vendor/autoload.php';
 		}
 
@@ -173,9 +180,6 @@ if ( ! class_exists( 'WPUM_Recaptcha' ) ) :
 		 * @return boolean
 		 */
 		public function plugin_can_run() {
-
-			$this->autoload();
-
 			$requirements_check = new WP_Requirements_Check( array(
 				'title' => 'WPUM Recaptcha',
 				'php'   => '5.5',
@@ -193,9 +197,6 @@ if ( ! class_exists( 'WPUM_Recaptcha' ) ) :
 		 * @return boolean
 		 */
 		private function addon_can_run() {
-
-			$this->autoload();
-
 			$requirements_check = new WPUM_Extension_Activation(
 				array(
 					'title'        => 'WPUM Recaptcha',
@@ -205,7 +206,20 @@ if ( ! class_exists( 'WPUM_Recaptcha' ) ) :
 			);
 
 			return $requirements_check->passes();
+		}
 
+		/**
+		 * Show the Vendor build issue notice.
+		 *
+		 * @since  1.0.0
+		 * @access public
+		 */
+		public function vendor_failed_notice() { ?>
+			<div class="error">
+				<p><?php printf( '<strong>WP User Manager</strong> &mdash; The %s addon plugin cannot be activated as it is missing the vendor directory.', esc_html( 'Recaptcha' ) ); ?></p>
+			</div>
+			<?php
+			deactivate_plugins( plugin_basename( __FILE__ ) );
 		}
 
 	}
