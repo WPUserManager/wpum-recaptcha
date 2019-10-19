@@ -1,13 +1,13 @@
-=== WP User Manager reCAPTCHA ===
+=== WP User Manager reCAPTCHA Lite ===
 Author URI: https://wpusermanager.com
 Plugin URI: https://wpusermanager.com
-Contributors: alessandro.tesoro, wpusermanager
+Contributors: wpusermanager, alessandro.tesoro
 Tags: recaptcha, nocaptcha, login recaptcha, registration recaptcha
 Requires at least: 4.7
 Tested up to: 4.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Stable Tag: 2.0.1
+Stable Tag: 2.0.2
 
 Add Google's reCAPTCHA noCAPTCHA to front-end forms powered by the WP User Manager plugin.
 
@@ -62,6 +62,9 @@ Login, registration and password recovery forms.
 [http://wpusermanager.com/faq/](http://wpusermanager.com/faq/)
 
 == Changelog ==
+
+= 2.0.2 =
+- Compatibility with WPUM reCAPTCHA Pro (Google invisible and v3 support)
 
 = 2.0.0 =
 - Compatibility with WP User Manager 2.0.0

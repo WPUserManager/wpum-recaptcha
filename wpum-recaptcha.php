@@ -1,10 +1,10 @@
 <?php
 /*
-Plugin Name: WPUM Recaptcha
+Plugin Name: WPUM Recaptcha Lite
 Plugin URI:  https://wpusermanager.com
 Description: Addon for WP User Manager, stop spam registrations on your website for free.
-Version:     2.0.1
-Author:      Alessandro Tesoro
+Version:     2.0.2
+Author:      WP User Manager
 Author URI:  https://wpusermanager.com/
 License:     GPLv3+
 Text Domain: wpum-recaptcha
@@ -83,11 +83,16 @@ if ( ! class_exists( 'WPUM_Recaptcha' ) ) :
 			if ( ! $this->autoload() ) {
 				return;
 			}
+
 			// Verify the plugin meets WP and PHP requirements.
-			$this->plugin_can_run();
+			if ( ! $this->plugin_can_run() ) {
+				return;
+			}
 
 			// Verify the addon can run first. If not, disable the addon automagically.
-			$this->addon_can_run();
+			if ( ! $this->addon_can_run() ) {
+				return;
+			}
 
 			// Plugin is activated now proceed.
 			$this->setup_constants();
@@ -131,7 +136,7 @@ if ( ! class_exists( 'WPUM_Recaptcha' ) ) :
 
 			// Plugin version.
 			if ( ! defined( 'WPUMR_VERSION' ) ) {
-				define( 'WPUMR_VERSION', '2.0.1' );
+				define( 'WPUMR_VERSION', '2.0.2' );
 			}
 
 			// Plugin Folder Path.
