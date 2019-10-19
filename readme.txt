@@ -65,8 +65,11 @@ Login, registration and password recovery forms.
 
 == Changelog ==
 
-= 2.0.2 =
+= 2.0.2 (19th October 2019) =
+
 - Compatibility with WPUM reCAPTCHA Pro (Google invisible and v3 support)
+- Fix: Fatal error if WP User Manager plugin not activated
+- Fix: Ensure the vendor directory exists before loading
 
 = 2.0.0 =
 - Compatibility with WP User Manager 2.0.0
