@@ -1,10 +1,10 @@
 === WP User Manager reCAPTCHA Lite ===
 Author URI: https://wpusermanager.com
 Plugin URI: https://wpusermanager.com
-Contributors: wpusermanager, alessandro.tesoro
+Contributors: wpusermanager
 Tags: recaptcha, nocaptcha, login recaptcha, registration recaptcha
 Requires at least: 4.7
-Tested up to: 4.9
+Tested up to: 5.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Stable Tag: 2.0.2
@@ -18,9 +18,11 @@ Add Google's reCAPTCHA noCAPTCHA to front-end forms powered by the WP User Manag
 > This is a free addon for the [WP User Manager plugin](https://wordpress.org/plugins/wp-user-manager/). You must download and install the [WP User Manager plugin](https://wordpress.org/plugins/wp-user-manager/) before you can use this addon.
 > Download WPUM for free here [https://wordpress.org/plugins/wp-user-manager/](https://wordpress.org/plugins/wp-user-manager/)
 
+**There is [paid reCAPTCHA addon](https://wpusermanager.com/addons/recaptcha?utm_source=wordpress.org&utm_medium=free%20plugin%20listing&utm_campaign=reCAPTCHA) available which supports invisible and checkbox reCAPTCHAs for the Google reCAPTCHA API v2, as well as the API v3 reCAPTCHA.**
+
 = WPUM reCAPTCHA =
 
-Add Google's reCAPTCHA noCAPTCHA to your website and protect your site from spam registrations and login. This addon lets you choose which forms you wish to protect, you can decide to display the recaptcha field into the registration form, login forms and password recovery form, all with just a few clicks.
+Add Google's reCAPTCHA noCAPTCHA checkbox to your website and protect your site from spam registrations and login. This addon lets you choose which forms you wish to protect, you can decide to display the recaptcha field into the registration form, login forms and password recovery form, all with just a few clicks.
 
 = Smart & Effective =
 [WP User Manager](http://wpusermanager.com) is a simple-to-use solution to manage your WordPress community and create beautiful user profiles. Powerful and flexible, yet easy to setup and use, WPUM takes care of all your users needs and saves you time.
