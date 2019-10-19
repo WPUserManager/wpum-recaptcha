@@ -94,6 +94,10 @@ if ( ! class_exists( 'WPUM_Recaptcha' ) ) :
 				return;
 			}
 
+			if ( $this->pro_addon_enabled() ) {
+				return;
+			}
+
 			// Plugin is activated now proceed.
 			$this->setup_constants();
 			$this->includes();
@@ -113,6 +117,21 @@ if ( ! class_exists( 'WPUM_Recaptcha' ) ) :
 			}
 
 			return require __DIR__ . '/vendor/autoload.php';
+		}
+
+		/**
+		 * Is the Pro addon enabled? Don't let them both run at the same time
+		 *
+		 * @return bool
+		 */
+		protected function pro_addon_enabled() {
+			if ( class_exists( 'WPUM_Recaptcha_Pro' ) ) {
+				add_action( 'admin_notices', array( $this, 'pro_addon_enabled_notice' ) );
+
+				return true;
+			}
+
+			return false;
 		}
 
 		/**
@@ -186,7 +205,7 @@ if ( ! class_exists( 'WPUM_Recaptcha' ) ) :
 		 */
 		public function plugin_can_run() {
 			$requirements_check = new WP_Requirements_Check( array(
-				'title' => 'WPUM Recaptcha',
+				'title' => 'WPUM Recaptcha Lite',
 				'php'   => '5.5',
 				'wp'    => '4.7',
 				'file'  => __FILE__,
@@ -204,7 +223,7 @@ if ( ! class_exists( 'WPUM_Recaptcha' ) ) :
 		private function addon_can_run() {
 			$requirements_check = new WPUM_Extension_Activation(
 				array(
-					'title'        => 'WPUM Recaptcha',
+					'title'        => 'WPUM Recaptcha Lite',
 					'wpum_version' => '2.0.0',
 					'file'         => __FILE__,
 				)
@@ -222,6 +241,20 @@ if ( ! class_exists( 'WPUM_Recaptcha' ) ) :
 		public function vendor_failed_notice() { ?>
 			<div class="error">
 				<p><?php printf( '<strong>WP User Manager</strong> &mdash; The %s addon plugin cannot be activated as it is missing the vendor directory.', esc_html( 'Recaptcha' ) ); ?></p>
+			</div>
+			<?php
+			deactivate_plugins( plugin_basename( __FILE__ ) );
+		}
+
+		/**
+		 * Show the Pro addon notice.
+		 *
+		 * @since  1.0.0
+		 * @access public
+		 */
+		public function pro_addon_enabled_notice() { ?>
+			<div class="notice notice-warning">
+				<p><?php printf( '<strong>WP User Manager</strong> &mdash; The %s addon has been deactivated as the premium addon replaces it.', esc_html( 'Recaptcha' ) ); ?></p>
 			</div>
 			<?php
 			deactivate_plugins( plugin_basename( __FILE__ ) );
