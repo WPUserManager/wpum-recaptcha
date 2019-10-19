@@ -1,3 +1,5 @@
 vendor
 wpum-recaptcha.zip
 deploy.sh
+/release
+node_modules
