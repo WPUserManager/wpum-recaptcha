@@ -7,7 +7,7 @@ Requires at least: 4.7
 Tested up to: 5.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Stable Tag: 2.0.2
+Stable Tag: 2.0.3
 
 Add Google's reCAPTCHA noCAPTCHA to front-end forms powered by the WP User Manager plugin.
 
@@ -64,6 +64,10 @@ Login, registration and password recovery forms.
 [http://wpusermanager.com/faq/](http://wpusermanager.com/faq/)
 
 == Changelog ==
+
+= 2.0.3 (21 October 2019) =
+
+- Fix: Vendor autoload.php file does not exist
 
 = 2.0.2 (19th October 2019) =
 
