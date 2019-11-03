@@ -44,11 +44,12 @@ if ( is_array( $recaptcha_display ) && in_array( 'registration', $recaptcha_disp
  * Hook into the forms validation system for the login and registration form
  * and then validate the recaptcha field.
  *
- * @param bool $pass
- * @param array $fields
- * @param array $values
+ * @param bool   $pass
+ * @param array  $fields
+ * @param array  $values
  * @param string $form
- * @return void
+ *
+ * @return bool|WP_Error
  */
 function wpum_recaptcha_validate( $pass, $fields, $values, $form ) {
 
@@ -63,6 +64,8 @@ function wpum_recaptcha_validate( $pass, $fields, $values, $form ) {
 			$recaptcha_response_key = esc_html( $_POST['g-recaptcha-response'] );
 			$resp = $recaptcha->verify( $recaptcha_response_key, $_SERVER['REMOTE_ADDR'] );
 			if ( ! $resp->isSuccess() ) {
+				error_log( __( 'WPUM Recaptcha validation failed.', 'wpum-recaptcha' ) );
+				error_log( print_r( $resp->getErrorCodes(), true ) );
 				return new WP_Error( 'recaptcha-error', esc_html__( 'Recaptcha validation failed.', 'wpum-recaptcha' ) );
 			}
 		}
