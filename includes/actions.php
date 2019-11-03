@@ -64,8 +64,7 @@ function wpum_recaptcha_validate( $pass, $fields, $values, $form ) {
 			$recaptcha_response_key = esc_html( $_POST['g-recaptcha-response'] );
 			$resp = $recaptcha->verify( $recaptcha_response_key, $_SERVER['REMOTE_ADDR'] );
 			if ( ! $resp->isSuccess() ) {
-				error_log( __( 'WPUM Recaptcha validation failed.', 'wpum-recaptcha' ) );
-				error_log( print_r( $resp->getErrorCodes(), true ) );
+				error_log( __( 'WPUM Recaptcha validation failed:', 'wpum-recaptcha' ) . ' ' . implode( ', ', $resp->getErrorCodes() ) );
 				return new WP_Error( 'recaptcha-error', esc_html__( 'Recaptcha validation failed.', 'wpum-recaptcha' ) );
 			}
 		}
