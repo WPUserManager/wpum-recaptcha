@@ -60,7 +60,7 @@ function wpum_recaptcha_validate( $pass, $fields, $values, $form ) {
 		$form == 'registration' && is_array( $recaptcha_display ) && in_array( 'registration', $recaptcha_display )
 	) {
 		if ( isset( $_POST['g-recaptcha-response'] ) ) {
-			$recaptcha              = new \ReCaptcha\ReCaptcha( wpum_get_option( 'recaptcha_secret_key' ) );
+			$recaptcha              = new \ReCaptcha\ReCaptcha( wpum_get_option( 'recaptcha_secret_key' ), new \ReCaptcha\RequestMethod\WPPost() );
 			$recaptcha_response_key = esc_html( $_POST['g-recaptcha-response'] );
 			$resp = $recaptcha->verify( $recaptcha_response_key, $_SERVER['REMOTE_ADDR'] );
 			if ( ! $resp->isSuccess() ) {

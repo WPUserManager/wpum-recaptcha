@@ -142,6 +142,7 @@ if ( ! class_exists( 'WPUM_Recaptcha' ) ) :
 		public function includes() {
 			require_once WPUMR_PLUGIN_DIR . 'includes/settings.php';
 			require_once WPUMR_PLUGIN_DIR . 'includes/actions.php';
+			require_once WPUMR_PLUGIN_DIR . 'includes/ReCaptcha/RequestMethod/WPPost.php';
 		}
 
 		/**
