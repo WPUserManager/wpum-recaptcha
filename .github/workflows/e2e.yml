@@ -81,7 +81,7 @@ jobs:
 
       - name: Install npm dependencies
         working-directory: wpum-recaptcha
-        run: npm install
+        run: yarn install --frozen-lockfile --ignore-scripts
 
       - name: Install Playwright browsers
         working-directory: wpum-recaptcha

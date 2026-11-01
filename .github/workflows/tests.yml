@@ -5,10 +5,9 @@ name: Unit Tests
 
 on:
   pull_request:
+    # The smoke tests read readme.txt and the POT file, so changes to those still run.
     paths-ignore:
       - '**.md'
-      - 'readme.txt'
-      - 'languages/**'
   # Release runs this before it deploys.
   workflow_call:
   # A full run on any branch, e.g. develop after a merge: gh workflow run tests.yml --ref develop
