@@ -54,6 +54,13 @@ class RegistrationTest extends AddonTestCase {
 		$this->assertCount( 0, $this->google_requests );
 	}
 
+	public function test_a_registration_without_a_response_is_refused() {
+		$result = $this->register( null );
+
+		$this->assertNotRegistered( $result );
+		$this->assertCount( 0, $this->google_requests );
+	}
+
 	/**
 	 * Not the addon's error, on PHP 8: the array becomes a warning before it becomes a bad token.
 	 * Either way, nothing is created.

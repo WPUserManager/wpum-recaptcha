@@ -56,7 +56,7 @@ Not tested anywhere:
 | Feature | WPUnit | E2E |
 |---|---|---|
 | Shows on the login and registration forms, ahead of the button | ✅ | ✅ |
-| Carries the site key | ✅ | ✅ |
+| Carries the site key, escaped | ✅ | ✅ |
 | Loads Google's script, in English by default | ✅ | ✅ |
 | `wpum_recaptcha_language` changes the language, and is escaped | ✅ | |
 | A site that chose one form gets it on that form only | | ✅ |
@@ -82,6 +82,7 @@ Not tested anywhere:
 | A good token registers the member and moves on | ✅ | ✅ |
 | A token Google rejects: no account, the error shown | ✅ | ✅ |
 | An unticked box (an empty token): no account, and Google isn't asked | ✅ | ✅ |
+| No response at all: no account, and Google isn't asked | ✅ | |
 | A token posted as an array: no account | ✅ | |
 | The wrong secret: no account | ✅ | |
 | No secret saved: no account | ✅ | |
@@ -95,6 +96,7 @@ Not tested anywhere:
 | A good token and the right password log the member in | ✅ | ✅ |
 | A token Google rejects keeps the right password out | ✅ | ✅ |
 | An unticked box (an empty token) keeps the right password out, and Google isn't asked | ✅ | ✅ |
+| No response at all keeps the right password out, and Google isn't asked | ✅ | |
 | A rejected token means the password is never checked | ✅ | |
 | A good token doesn't excuse a wrong password | ✅ | ✅ |
 | The wrong secret keeps the right password out | ✅ | |
