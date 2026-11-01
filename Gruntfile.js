@@ -18,16 +18,34 @@ module.exports = function( grunt ) {
 					'!release/**',
 					'!.git/**',
 					'!.sass-cache/**',
-					'!css/src/**',
-					'!js/src/**',
+					'!assets/css/src/**',
+					'!assets/css/**/*.map',
+					'!assets/js/src/**',
 					'!img/src/**',
 					'!Gruntfile.js',
 					'!package.json',
 					'!.gitignore',
 					'!.gitmodules',
 					'!yarn.lock',
+					'!package-lock.json',
+					'!.yarnrc',
+					'!README.md',
+					'!readme.md',
 					'!composer.lock',
-					'!composer.json'
+					'!composer.json',
+					'!.github/**',
+					'!release.json',
+					'!playwright.config.ts',
+					'!tsconfig.json',
+					'!.wp-env.json',
+					'!.wp-env.override.json',
+					'!tests/**',
+					'!test-results/**',
+					'!playwright-report/**',
+					'!phpcs.xml',
+					'!phpstan.neon.dist',
+					'!phpstan-baseline.neon',
+					'!phpstan-stubs.php'
 				],
 				dest: 'release/<%= pkg.version %>/'
 			}
@@ -36,7 +54,7 @@ module.exports = function( grunt ) {
 			main: {
 				options: {
 					mode: 'zip',
-					archive: './release/<%= pkg.name %>.zip'
+					archive: './release/<%= pkg.name %>.<%= pkg.version %>.zip'
 				},
 				expand: true,
 				cwd: 'release/<%= pkg.version %>/',
@@ -44,7 +62,25 @@ module.exports = function( grunt ) {
 				dest: '<%= pkg.name %>/'
 			}
 		},
+		makepot: {
+			target: {
+				options: {
+					exclude: [
+						'assets/.*', 'images/.*', 'node_modules/.*', 'tests/.*', 'release/.*', 'build/.*'
+					],
+					domainPath: '/languages',
+					mainFile: '<%= pkg.name %>.php',
+					potFilename: '<%= pkg.name %>.pot',
+					potHeaders: {
+						poedit: true,                 // Includes common Poedit headers.
+						'x-poedit-keywordslist': true // Include a list of all possible gettext functions.
+					},
+					type: 'wp-plugin'
+				}
+			}
+		},
 	} );
 
+	grunt.registerTask( 'do_pot', ['makepot'] );
 	grunt.registerTask( 'build', ['clean', 'copy', 'compress'] );
 };

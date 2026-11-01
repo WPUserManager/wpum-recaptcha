@@ -1,5 +1,13 @@
 vendor
-wpum-recaptcha.zip
+*.zip
 deploy.sh
 /release
 node_modules
+
+# Test artifacts
+.wp-env.override.json
+tests/codeception.yml
+tests/.env.local
+tests/_output/
+playwright-report/
+test-results/
