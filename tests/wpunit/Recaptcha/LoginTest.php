@@ -41,6 +41,13 @@ class LoginTest extends AddonTestCase {
 		$this->assertCount( 0, $this->google_requests );
 	}
 
+	public function test_a_login_without_a_response_is_refused() {
+		$this->create_member();
+
+		$this->assertNotLoggedIn( $this->login( 'a_member', self::PASSWORD, null ) );
+		$this->assertCount( 0, $this->google_requests );
+	}
+
 	/**
 	 * Nobody gets to try a password until reCAPTCHA has passed.
 	 */

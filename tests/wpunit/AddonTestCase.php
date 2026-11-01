@@ -293,8 +293,7 @@ abstract class AddonTestCase extends \Codeception\TestCase\WPTestCase {
 	/**
 	 * Post the registration form through the handler WPUM runs for a real request.
 	 *
-	 * @param string|array|null $token What the widget posts. Null leaves it out, as a form with
-	 *                                 no widget does.
+	 * @param string|array|null $token What the form posts. Null posts no response.
 	 *
 	 * @return object {
 	 *     @type string      $email    The email address that was registered.

@@ -18,6 +18,14 @@ class WidgetTest extends AddonTestCase {
 		$this->assertSame( self::SITE_KEY, $widgets->item( 0 )->getAttribute( 'data-sitekey' ) );
 	}
 
+	public function test_the_site_key_is_escaped() {
+		wpum_update_option( 'recaptcha_site_key', 'a"key' );
+
+		$widgets = $this->xpath( $this->widget() )->query( '//div[@class="g-recaptcha"]' );
+
+		$this->assertSame( 'a"key', $widgets->item( 0 )->getAttribute( 'data-sitekey' ) );
+	}
+
 	public function test_it_loads_googles_script_in_english_by_default() {
 		$scripts = $this->xpath( $this->widget() )->query( '//script' );
 

@@ -24,7 +24,7 @@ function wpumr_add_recaptcha_field() {
 	$lang     = apply_filters( 'wpum_recaptcha_language', 'en' );
 
 	?>
-	<div class="g-recaptcha" data-sitekey="<?php echo $site_key; ?>" style="margin-bottom:20px;"></div>
+	<div class="g-recaptcha" data-sitekey="<?php echo esc_attr( $site_key ); ?>" style="margin-bottom:20px;"></div>
 	<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?hl=<?php echo esc_attr( $lang ); ?>"></script>
 	<?php
 
@@ -59,14 +59,16 @@ function wpum_recaptcha_validate( $pass, $fields, $values, $form ) {
 		$form == 'login' && is_array( $recaptcha_display ) && in_array( 'login', $recaptcha_display ) ||
 		$form == 'registration' && is_array( $recaptcha_display ) && in_array( 'registration', $recaptcha_display )
 	) {
-		if ( isset( $_POST['g-recaptcha-response'] ) ) {
-			$recaptcha              = new \ReCaptcha\ReCaptcha( wpum_get_option( 'recaptcha_secret_key' ), new \ReCaptcha\RequestMethod\WPPost() );
-			$recaptcha_response_key = esc_html( $_POST['g-recaptcha-response'] );
-			$resp = $recaptcha->verify( $recaptcha_response_key, $_SERVER['REMOTE_ADDR'] );
-			if ( ! $resp->isSuccess() ) {
-				error_log( __( 'WPUM Recaptcha validation failed:', 'wpum-recaptcha' ) . ' ' . implode( ', ', $resp->getErrorCodes() ) );
-				return new WP_Error( 'recaptcha-error', esc_html__( 'Recaptcha validation failed.', 'wpum-recaptcha' ) );
-			}
+		if ( empty( $_POST['g-recaptcha-response'] ) ) {
+			return new WP_Error( 'recaptcha-error', esc_html__( 'Recaptcha validation failed.', 'wpum-recaptcha' ) );
+		}
+
+		$recaptcha              = new \ReCaptcha\ReCaptcha( wpum_get_option( 'recaptcha_secret_key' ), new \ReCaptcha\RequestMethod\WPPost() );
+		$recaptcha_response_key = esc_html( $_POST['g-recaptcha-response'] );
+		$resp = $recaptcha->verify( $recaptcha_response_key, $_SERVER['REMOTE_ADDR'] );
+		if ( ! $resp->isSuccess() ) {
+			error_log( __( 'WPUM Recaptcha validation failed:', 'wpum-recaptcha' ) . ' ' . implode( ', ', $resp->getErrorCodes() ) );
+			return new WP_Error( 'recaptcha-error', esc_html__( 'Recaptcha validation failed.', 'wpum-recaptcha' ) );
 		}
 	}
 
